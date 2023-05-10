@@ -1,0 +1,124 @@
+<mvc:View
+		controllerName="com.example.countphysicalinventory.controller.Main"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m"
+		xmlns:f="sap.f"
+		xmlns:layout="sap.ui.layout"
+		height="100%">
+		<f:DynamicPage id="cpiId" >
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Physical Inventory Document: 6000000097" level="H2" />
+					</f:heading>
+					
+					
+					<f:navigationActions>						
+						<Button
+								icon="sap-icon://exit-full-screen"
+								type="Transparent" />
+					</f:navigationActions>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader >
+					<layout:HorizontalLayout >
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="Warehouse Order" text="24000044800"/>
+							<ObjectAttribute title="Number of Physical Inventory Items" text="1"/>
+							<ObjectAttribute title="Time Zone" text="CET"/>
+						</layout:VerticalLayout>						
+					</layout:HorizontalLayout>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<IconTabBar
+		        id="cpiTabBar">
+                
+		<items>
+			<IconTabFilter
+				text="General information"
+				key="geninfo">
+				
+                <Panel
+                id="dateTimePanel"
+                 width="100%"  >
+                <HBox width="100%" alignContent="Center" >
+                    <Label text="Counter :"  required="true" labelFor="CC" class="sapUiTinyMarginTop" />
+                    <Input id="CC" width="520px" value="DEMO"  class="sapUiLargeMarginBegin" />
+                </HBox>
+                <HBox >
+                    <Label text="Count Date and Time :" required="true" labelFor="DTP1" class="sapUiTinyMarginTop" />
+                    <DateTimePicker
+                    id="DTP1"
+                    width="520px"
+                    placeholder="Enter Date"
+                    change="handleChange"
+                    class="sapUiSmallMarginBegin"/>
+                </HBox>                
+                </Panel> 
+
+                <!-- Table Starts Here   -->
+                <Label text="Count Physical Inventory items" class="sapUiMediumMargin" />
+                <Table id="idPItable"
+				items="{path: 'app>/REQUEST_CPI/CPI_Items'}">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="Total Rows of PI Items (1)" level="H2"/>
+						<ToolbarSpacer/>
+						<Button text="Add HU" press="onAddHU" />
+						<Button text="Add Product" press="onAddProduct" />
+						<Button text="Assign Count Reference" press="onACR" />
+						<Button text="Assign Serial Number Range" press="onASNR" enabled="false" />
+						<Button text="Delete" press="onDelete" enabled="false" />
+						<Button
+							tooltip="Settings"
+							icon="sap-icon://settings"
+							press="handleSettingsButtonPressed"
+							enabled="false" />
+					</OverflowToolbar>
+				</headerToolbar>
+				
+				<columns>
+					<Column id="product" width="12em" headerMenu="columnHeaderMenu"><Text text="Storage Bin" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Bin Empty" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End"><Text text="Handling Unit" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Product" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Product Desc." /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Count Reference" /></Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Quantity" /></Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="UoM" /></Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Checked" /></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<ObjectIdentifier title="{app>Storage_Bin}" />
+							<CheckBox text="" enabled="false" />
+                            <Text text="{}" />
+                            <Link text="{app>Product}" />
+                            <Text text="{app>Product_Desc}" />
+                            <Text text="{}" />
+                            <Input type="Text" />
+                            <Input type="Text" value="{app>UoM}"  />
+							<CheckBox text="" enabled="true" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+                
+			</IconTabFilter>
+			<IconTabFilter
+				text="Count Physical Inventory Items"
+				key="cpiitems">
+				<Text text="Count Physical Inventory Items go here ..." />
+			</IconTabFilter>			
+		</items>
+	</IconTabBar>
+			</f:content>
+			
+		</f:DynamicPage>
+</mvc:View>

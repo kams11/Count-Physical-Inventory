@@ -1,0 +1,136 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopoverACR"
+		showHeader="false"
+		contentWidth="80%"
+		contentHeight="700px"
+		placement="Top"
+		ariaLabelledBy="master-title">
+		<NavContainer
+			id="navConACR">
+			<Page
+				id="masterACR"
+				class="sapUiResponsivePadding--header"
+				title="Assign Count Reference">
+				
+				<Table id="idACRTable" mode="MultiSelect"
+				items="{path: 'app>/REQUEST_CPI/CPI_Items'}">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="Physical Inventory Items(1)" level="H2"/>
+						<ToolbarSpacer/>
+						<Button text="Assign" press="onAssign" />
+						<Button text="Clear" press="onClear" />
+						<Button text="Show Details" press="onShowDetails" />
+					</OverflowToolbar>
+				</headerToolbar>
+				
+				<columns>
+					<Column id="productACR" width="12em" headerMenu="columnHeaderMenu"><Text text="PI Item" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Storage Bin" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Product" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Product Desc." /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Batch" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Count Reference" /></Column>
+                    
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{app>PI_Item}" />
+							<ObjectIdentifier title="{app>Storage_Bin}" />
+                            
+                            <Text text="{app>Product}" />
+                            <Text text="{app>Product_Desc}" />
+                            <Text text="{}" />
+							<Text text="{app>CountRef}" />
+                            
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			</Page>
+			<Page
+				id="detail"
+				class="sapUiResponsivePadding--header"
+				showNavButton="true"
+				navButtonPress="onNavBack"
+				title="Product">
+				<content>
+					<ObjectHeader title="{Name}" >
+						<attributes>
+							<ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+							<ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" />
+						</attributes>
+					</ObjectHeader>
+					<Text class="sapUiSmallMargin" text="{Description}" />
+				</content>
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>
+
+<!-- <core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		id="myDialog"
+		noDataText="No Products Found"
+		title="Assign Count Reference"
+		confirm=".handleClose"
+		cancel=".handleClose"
+		>
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<ObjectIdentifier title="{app>}" text="{ProductId}" />
+				<Text text="{Storage_Bin}" />
+				<Text text="{}" />
+                <Text text="{}" />
+                <Text text="{}" />
+                <Text text="{}" />
+                <Text text="{}" />
+				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="12em">
+				<header>
+					<Text text="PI Item" />
+				</header>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text text="Storage Bin" />
+				</header>
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<header>
+					<Text text="Product" />
+				</header>
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<header>
+					<Text text="Product Desc." />
+				</header>
+			</Column>
+			<Column hAlign="End">
+				<header>
+					<Text text="Batch" />
+				</header>
+			</Column>
+            <Column hAlign="End">
+				<header>
+					<Text text="Count Reference" />
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition> -->

@@ -1,0 +1,15 @@
+{
+    "CPI_Items": [
+        {
+            "PI_Item": "1",
+            "Storage_Bin": "50-PSA-010",
+            "Handling_Unit": "",
+            "Product" : "455",
+            "Product_Desc" : "WINDOW LIFTER DOOR FRT-GLT",
+            "Count_Reference" : "",
+            "Quantity" : "",
+            "UoM" : "PC",
+            "CountRef" : "1024"
+        }
+    ]
+}
